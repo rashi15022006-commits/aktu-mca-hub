@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AKTU MCA Hub | Notes, Syllabus, PYQs & Important Questions</title>
+    <meta name="description" content="Ultimate educational portal for AKTU MCA students. Get semester syllabus, notes, previous year question papers, and important questions.">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#home" class="logo" onclick="switchTab('home')">
+                <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                <div class="logo-text">
+                    <span class="logo-title">AKTU MCA <span class="badge-tag">HUB</span></span>
+                    <span class="logo-sub">Student Learning Portal</span>
+                </div>
+            </a>
+
+            <!-- Search Bar in Header -->
+            <div class="header-search">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <input type="text" id="globalSearchInput" placeholder="Search subjects, notes, PYQs, units..." onkeyup="handleGlobalSearch(event)">
+                <div id="searchResults" class="search-dropdown"></div>
+            </div>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link active" onclick="switchTab('home')">Home</a>
+                <a href="#semesters" class="nav-link" onclick="switchTab('semesters')">Semesters</a>
+                <a href="#papers" class="nav-link" onclick="switchTab('papers')">Question Papers</a>
+                <a href="#syllabus" class="nav-link" onclick="switchTab('syllabus')">Syllabus</a>
+                <a href="#notes" class="nav-link" onclick="switchTab('notes')">Notes</a>
+                <a href="#important" class="nav-link" onclick="switchTab('important')">Important Questions</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button class="mobile-toggle" onclick="toggleMobileMenu()" aria-label="Toggle Navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-content">
+
+        <!-- ================= HOME TAB ================= -->
+        <section id="homeTab" class="tab-content active">
+            <!-- Hero Section -->
+            <div class="hero">
+                <div class="hero-badge">
+                    <i class="fa-solid fa-sparkles"></i> Updated for 2026 Academic Session
+                </div>
+                <h1 class="hero-title">
+                    Master Your <span class="text-gradient">AKTU MCA</span> Degree
+                </h1>
+                <p class="hero-subtitle">
+                    Notes, Previous Year Question Papers, Unit-wise Syllabus & Exam-oriented Important Questions — Everything curated for Dr. A.P.J. Abdul Kalam Technical University students.
+                </p>
+                <div class="hero-cta">
+                    <button class="btn btn-primary" onclick="switchTab('semesters')">
+                        <i class="fa-solid fa-layer-group"></i> Explore Semesters
+                    </button>
+                    <button class="btn btn-secondary" onclick="switchTab('papers')">
+                        <i class="fa-solid fa-file-pdf"></i> Previous Year Papers
+                    </button>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon bg-blue"><i class="fa-solid fa-book-open"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-num">4</span>
+                            <span class="stat-label">Full Semesters</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-purple"><i class="fa-solid fa-cubes"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-num">24+</span>
+                            <span class="stat-label">Core Subjects</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-indigo"><i class="fa-solid fa-file-lines"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-num">100+</span>
+                            <span class="stat-label">Solved Papers</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon bg-sky"><i class="fa-solid fa-lightbulb"></i></div>
+                        <div class="stat-info">
+                            <span class="stat-num">500+</span>
+                            <span class="stat-label">Important Questions</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Access Semesters -->
+            <div class="section-container">
+                <div class="section-header">
+                    <h2>Select Semester</h2>
+                    <p>Choose your current semester to jump directly into syllabus, notes, and papers.</p>
+                </div>
+                <div class="grid-4" id="homeSemesterCards"></div>
+            </div>
+
+            <!-- AKTU Quick Links Bar -->
+            <div class="section-container">
+                <div class="aktu-banner">
+                    <div class="aktu-banner-content">
+                        <h3><i class="fa-solid fa-building-columns"></i> Official AKTU Quick Links</h3>
+                        <p>Direct access to official university student portals and announcements.</p>
+                    </div>
+                    <div class="aktu-links">
+                        <a href="https://oneview.aktu.ac.in/" target="_blank" rel="noopener" class="aktu-link-btn"><i class="fa-solid fa-user-graduate"></i> OneView Result</a>
+                        <a href="https://aktu.ac.in/circulars.html" target="_blank" rel="noopener" class="aktu-link-btn"><i class="fa-solid fa-bell"></i> Circulars</a>
+                        <a href="https://aktu.ac.in/syllabus.html" target="_blank" rel="noopener" class="aktu-link-btn"><i class="fa-solid fa-file-lines"></i> Official Syllabus</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SEMESTERS TAB ================= -->
+        <section id="semestersTab" class="tab-content">
+            <div class="page-header">
+                <h1>AKTU MCA Semesters</h1>
+                <p>Browse syllabus, notes, question papers, and important topics sorted by semester.</p>
+            </div>
+
+            <!-- Semester Tabs Navigation -->
+            <div class="sem-pills-nav" id="semPillsNav">
+                <button class="sem-pill active" onclick="filterSemesterTab(1)">MCA 1st Semester</button>
+                <button class="sem-pill" onclick="filterSemesterTab(2)">MCA 2nd Semester</button>
+                <button class="sem-pill" onclick="filterSemesterTab(3)">MCA 3rd Semester</button>
+                <button class="sem-pill" onclick="filterSemesterTab(4)">MCA 4th Semester</button>
+            </div>
+
+            <div id="semesterSubjectsDisplay" class="grid-3 mt-8"></div>
+        </section>
+
+        <!-- ================= QUESTION PAPERS TAB ================= -->
+        <section id="papersTab" class="tab-content">
+            <div class="page-header">
+                <h1>Previous Year Question Papers</h1>
+                <p>Filter, view, and download AKTU MCA end-semester exam papers.</p>
+            </div>
+
+            <!-- Filters Bar -->
+            <div class="filter-card">
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label for="paperSemFilter"><i class="fa-solid fa-filter"></i> Semester</label>
+                        <select id="paperSemFilter" onchange="applyPaperFilters()">
+                            <option value="all">All Semesters</option>
+                            <option value="1">1st Semester</option>
+                            <option value="2">2nd Semester</option>
+                            <option value="3">3rd Semester</option>
+                            <option value="4">4th Semester</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="paperSubjectFilter"><i class="fa-solid fa-book"></i> Subject</label>
+                        <select id="paperSubjectFilter" onchange="applyPaperFilters()">
+                            <option value="all">All Subjects</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="paperYearFilter"><i class="fa-solid fa-calendar"></i> Year</label>
+                        <select id="paperYearFilter" onchange="applyPaperFilters()">
+                            <option value="all">All Years</option>
+                            <option value="2025-26">2025-26</option>
+                            <option value="2024-25">2024-25</option>
+                            <option value="2023-24">2023-24</option>
+                            <option value="2022-23">2022-23</option>
+                            <option value="2021-22">2021-22</option>
+                        </select>
+                    </div>
+                    <div class="filter-group search-filter">
+                        <label for="paperSearchInput"><i class="fa-solid fa-search"></i> Search Title</label>
+                        <input type="text" id="paperSearchInput" placeholder="e.g. Data Structures..." oninput="applyPaperFilters()">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Papers Table -->
+            <div class="table-responsive mt-6">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Academic Year</th>
+                            <th>Subject Name</th>
+                            <th>Semester</th>
+                            <th>Subject Code</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="papersTableBody">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ================= SYLLABUS TAB ================= -->
+        <section id="syllabusTab" class="tab-content">
+            <div class="page-header">
+                <h1>Semester-Wise Detailed Syllabus</h1>
+                <p>Complete 5-Unit breakdown of official AKTU MCA subjects.</p>
+            </div>
+
+            <div class="filter-card">
+                <div class="filter-grid-2">
+                    <div class="filter-group">
+                        <label for="sylSemSelect"><i class="fa-solid fa-graduation-cap"></i> Choose Semester</label>
+                        <select id="sylSemSelect" onchange="populateSyllabusSubjects()">
+                            <option value="1">MCA 1st Semester</option>
+                            <option value="2">MCA 2nd Semester</option>
+                            <option value="3">MCA 3rd Semester</option>
+                            <option value="4">MCA 4th Semester</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="sylSubSelect"><i class="fa-solid fa-book-open"></i> Choose Subject</label>
+                        <select id="sylSubSelect" onchange="renderSyllabusDetail()"></select>
+                    </div>
+                </div>
+            </div>
+
+            <div id="syllabusDetailContainer" class="mt-6"></div>
+        </section>
+
+        <!-- ================= NOTES TAB ================= -->
+        <section id="notesTab" class="tab-content">
+            <div class="page-header">
+                <h1>Subject-Wise Study Notes</h1>
+                <p>Comprehensive unit notes, key formulas, and topic-wise revision modules.</p>
+            </div>
+
+            <div class="notes-wrapper">
+                <!-- Sidebar Subject List -->
+                <div class="notes-sidebar">
+                    <h3 class="sidebar-title"><i class="fa-solid fa-list"></i> Select Subject</h3>
+                    <div id="notesSubjectList" class="notes-sub-list"></div>
+                </div>
+
+                <!-- Main Content Area -->
+                <div class="notes-main" id="notesMainContent">
+                    <!-- Populated dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= IMPORTANT QUESTIONS TAB ================= -->
+        <section id="importantTab" class="tab-content">
+            <div class="page-header">
+                <h1>Most Important Exam Questions</h1>
+                <p>High-frequency questions asked in AKTU MCA semester examinations with unit tags and difficulty scores.</p>
+            </div>
+
+            <div class="filter-card">
+                <div class="filter-grid">
+                    <div class="filter-group">
+                        <label for="impSemFilter"><i class="fa-solid fa-filter"></i> Semester</label>
+                        <select id="impSemFilter" onchange="applyImportantFilters()">
+                            <option value="all">All Semesters</option>
+                            <option value="1">1st Semester</option>
+                            <option value="2">2nd Semester</option>
+                            <option value="3">3rd Semester</option>
+                            <option value="4">4th Semester</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="impSubjectFilter"><i class="fa-solid fa-book"></i> Subject</label>
+                        <select id="impSubjectFilter" onchange="applyImportantFilters()">
+                            <option value="all">All Subjects</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="impDiffFilter"><i class="fa-solid fa-gauge-high"></i> Difficulty</label>
+                        <select id="impDiffFilter" onchange="applyImportantFilters()">
+                            <option value="all">All Levels</option>
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="impSearchInput"><i class="fa-solid fa-magnifying-glass"></i> Search</label>
+                        <input type="text" id="impSearchInput" placeholder="Search keywords..." oninput="applyImportantFilters()">
+                    </div>
+                </div>
+            </div>
+
+            <div id="importantQuestionsList" class="grid-1 mt-6"></div>
+        </section>
+
+    </main>
+
+    <!-- PDF Preview Modal -->
+    <div id="pdfModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h3 id="pdfModalTitle">Document Preview</h3>
+                    <p id="pdfModalSubtitle" class="text-sm text-gray">AKTU MCA Document View</p>
+                </div>
+                <button class="modal-close" onclick="closePdfModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="pdf-placeholder-box">
+                    <i class="fa-solid fa-file-pdf pdf-big-icon"></i>
+                    <h4 id="pdfSimTitle">Simulated PDF Viewer</h4>
+                    <p>In a production deployment, this iframe displays the actual PDF file hosted on your server or cloud storage.</p>
+                    <div class="pdf-sim-meta" id="pdfSimMeta">
+                        <span><i class="fa-solid fa-shield-halved"></i> Verified AKTU Document</span>
+                        <span><i class="fa-solid fa-download"></i> Fast Download Speed</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closePdfModal()">Close</button>
+                <a id="pdfDownloadBtn" href="#" class="btn btn-primary" download><i class="fa-solid fa-download"></i> Download PDF File</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Toast Notification -->
+    <div id="toast" class="toast"><i class="fa-solid fa-circle-check"></i> <span id="toastMsg">Action completed successfully</span></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-about">
+                <div class="logo">
+                    <i class="fa-solid fa-graduation-cap logo-icon"></i>
+                    <span class="logo-title" style="color: white;">AKTU MCA <span class="badge-tag">HUB</span></span>
+                </div>
+                <p class="mt-4">Dedicated open-access study resources for Dr. A.P.J. Abdul Kalam Technical University (AKTU) Master of Computer Applications (MCA) students.</p>
+                <p class="copyright">&copy; 2026 AKTU MCA Hub. Made with <i class="fa-solid fa-heart text-red"></i> for AKTU Students.</p>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Quick Navigation</h4>
+                <ul>
+                    <li><a href="#home" onclick="switchTab('home')"><i class="fa-solid fa-angle-right"></i> Home Portal</a></li>
+                    <li><a href="#semesters" onclick="switchTab('semesters')"><i class="fa-solid fa-angle-right"></i> Semesters</a></li>
+                    <li><a href="#papers" onclick="switchTab('papers')"><i class="fa-solid fa-angle-right"></i> Question Papers</a></li>
+                    <li><a href="#syllabus" onclick="switchTab('syllabus')"><i class="fa-solid fa-angle-right"></i> Detailed Syllabus</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Study Materials</h4>
+                <ul>
+                    <li><a href="#notes" onclick="switchTab('notes')"><i class="fa-solid fa-angle-right"></i> Subject Notes</a></li>
+                    <li><a href="#important" onclick="switchTab('important')"><i class="fa-solid fa-angle-right"></i> Important Questions</a></li>
+                    <li><a href="https://oneview.aktu.ac.in/" target="_blank" rel="noopener"><i class="fa-solid fa-angle-right"></i> AKTU OneView</a></li>
+                    <li><a href="https://aktu.ac.in/" target="_blank" rel="noopener"><i class="fa-solid fa-angle-right"></i> Official Website</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-links-col">
+                <h4>Disclaimer</h4>
+                <p class="text-sm">This is an independent educational portal created for study reference. It is not directly affiliated with or endorsed officially by AKTU Lucknow.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom Script -->
+    <script src="script.js"></script>
+</body>
+</html>
